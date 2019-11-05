@@ -7,7 +7,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost/jwt', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.once('open', () => console.log(`Connected to MongoDB on ${db.host} at ${db.port}`));
 db.on('error', (err) => console.log(`Database error: ${err}`));
